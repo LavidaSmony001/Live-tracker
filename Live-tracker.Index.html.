@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Internet Users Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #333;
+    }
+    #counter {
+      font-size: 3em;
+      color: #0077cc;
+      margin: 20px 0;
+    }
+    #alert {
+      font-size: 1.5em;
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Live Internet Users Tracker</h1>
+  <div id="counter">Loading...</div>
+  <div id="alert">+10 increase!</div>
+
+  <script>
+    let currentCount = 5600000000;
+    let previousCount = currentCount;
+
+    document.getElementById("counter").innerText = currentCount.toLocaleString();
+
+    function simulateFakeLiveCount() {
+      currentCount += Math.floor(Math.random() * 5);
+      document.getElementById("counter").innerText = currentCount.toLocaleString();
+
+      if (currentCount - previousCount >= 10) {
+        document.getElementById("alert").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("alert").style.display = "none";
+        }, 2000);
+        previousCount = currentCount;
+      }
+    }
+
+    setInterval(simulateFakeLiveCount, 3000);
+  </script>
+</body>
+</html>
